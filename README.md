@@ -107,3 +107,5 @@ int main()
 
 <img width="756" height="519" alt="image" src="https://github.com/user-attachments/assets/89e130a8-caea-4944-a068-e9926d658961" />
 
+# Result :
+Thus,an embedded C program is written in order to interface PWM with LPC1768.
