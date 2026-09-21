@@ -53,21 +53,57 @@ Header:
  delay.h, gpio.h, pwm.h, stdulils.h
 
 # PIN DIAGRAM :
+<img width="619" height="369" alt="image" src="https://github.com/user-attachments/assets/285e5437-c742-413e-99f6-223fddb747ea" />
 
 
 # CIRCUIT DIAGRAM:
- 
+ <img width="672" height="378" alt="image" src="https://github.com/user-attachments/assets/718bffe6-471c-405d-b88f-d47732359954" />
+
  
 # PROGRAM:
+```
+#include <lpc17xx.h>
+#include "pwm.h"
+#include "delay.h"
 
+#define CYCLE_TIME 255
 
- 
+/* start the main program */
+int main() 
+{
+    int dutyCycle;
+    SystemInit();             /* Clock and PLL configuration */ 
+    PWM_Init(CYCLE_TIME);     /* Initialize the PWM module and the Cycle time(Ton+Toff) is set to 255(similar to arduino)*/
+    PWM_Start(PWM_2|PWM_3|PWM_4|PWM_5); /* Enable PWM output on PWM_1-PWM_4 (P2_0 - P2_3) */
+
+    while(1)
+    {
+
+        for(dutyCycle=0;dutyCycle<CYCLE_TIME;dutyCycle++) /* Increase the Brightness of the Leds */
+        {
+            PWM_SetDutyCycle(PWM_2,dutyCycle);  //P2_1
+            PWM_SetDutyCycle(PWM_3,dutyCycle);  //P2_2
+            PWM_SetDutyCycle(PWM_4,dutyCycle);  //P2_3
+            PWM_SetDutyCycle(PWM_5,dutyCycle);  //P2_4
+            DELAY_ms(1000);
+        }
+
+        for(dutyCycle=CYCLE_TIME;dutyCycle>0;dutyCycle--) /* Decrease the Brightness of the Leds */
+        {
+            PWM_SetDutyCycle(PWM_1,dutyCycle);  //P2_0
+            PWM_SetDutyCycle(PWM_2,dutyCycle);  //P2_1
+            PWM_SetDutyCycle(PWM_3,dutyCycle);  //P2_2
+            PWM_SetDutyCycle(PWM_4,dutyCycle);  //P2_3
+            DELAY_ms(1000
+			
+			
+			
+			);
+        }
+    }                              
+}
+``` 
 # Output:
 
-
-
-
-
-
-
+<img width="756" height="519" alt="image" src="https://github.com/user-attachments/assets/89e130a8-caea-4944-a068-e9926d658961" />
 
